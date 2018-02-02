@@ -1,0 +1,28 @@
+{
+	"name": "ether-balance-fetcher",
+	"version": "1.0.0",
+	"description": "NodeJS sample application to get ether balance",
+	"main": "app.js",
+	"dependencies": {
+		"express": "4.14.0",
+		"web3": "0.16.0",
+		"socket.io": "1.6.0",
+		"bignumber.js": "^4.1.0",
+		"dotenv": "^4.0.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"ethereum",
+		"nodejs",
+		"web3js"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vlulukyan/Ether-balance-fetcher"
+	},
+	"author": "Vahan Lulukyan",
+	"license": "MIT"
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-xs-center">
+                    <div>
+                        <div class="form-group">
+                            <h1>ETH Balance Fetcher</h1>
+                            <label for="owner">Enter your Ethereum Address</label>
+                            <input type="text" size = "50" class="form-control" id="address">
+                        </div>
+                        <button type="button"  onclick="getBalance();" class="btn btn-primary">Get Balance</button>
+                        <br><br>
+                        <div class="alert alert-info" role="alert" id="message">
+                            Here you can get information about account balance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-xs-center">
+                    <br>
+                    <h3>Account balance checking history</h3>
+                    <br>
+                    <ol id="events_list">No History Found</ol>
+                </div>
+            </div>
+        </div>
+        <script>
+        const promisify = (inner) =>
+            new Promise((resolve, reject) =>
+                inner((err, res) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(res);
+                    }
+            })
+        );
+
+        async function getBalance() {
+            var address, wei, balance
+            address = document.getElementById("address").value
+            wei = promisify(cb => web3.eth.getBalance(address, cb))
+            try {
+                balance = web3.fromWei(await wei, 'ether')
+                document.getElementById("message").innerHTML = balance + " ETH";
+            } catch (error) {
+                document.getElementById("message").innerHTML = error;
+            }
+        }
+        </script>
+        <script type="text/javascript" src="/js/sha1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/socket.io.min.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+       // <script type="text/javascript" src="/js/web3.min.js"></script>
+    </body>
+</html>
